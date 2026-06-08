@@ -12,6 +12,10 @@ if (process.env.NODE_ENV === "production" && !process.env.NEXT_PUBLIC_ADRESSE) {
   );
 }
 
-const nextConfig = {};
+const nextConfig = {
+  experimental: {
+    serverComponentsExternalPackages: ['better-sqlite3'],
+  },
+};
 
 module.exports = nextConfig;
