@@ -1,16 +1,17 @@
 import Welcome from "@/components/Welcome";
-import ShimmerQuote from "@/components/ShimmerQuote";
+import MottoCarousel from "@/components/MottoCarousel";
 import BootcampFooter from "@/components/BootcampFooter";
+import { getMottos } from "@/lib/db";
 
 export default function Home() {
-  const motto = process.env.NEXT_PUBLIC_MOTTO;
+  const mottos = getMottos();
+  const mottoTexts = mottos.map((m) => m.text);
 
   return (
     <main className="min-h-screen flex flex-col">
       <div className="flex-1 flex items-center justify-center px-6">
-        {motto ? <ShimmerQuote text={motto} /> : <Welcome />}
+        {mottoTexts.length > 0 ? <MottoCarousel mottos={mottoTexts} /> : <Welcome />}
       </div>
-
       <BootcampFooter />
     </main>
   );
